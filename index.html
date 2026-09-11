@@ -128,7 +128,8 @@
 
   /* info modal */
   .modal{ position:fixed; inset:0; background:rgba(43,38,34,.45); z-index:50;
-    display:flex; align-items:flex-end; justify-content:center; padding:0; }
+    display:none; align-items:flex-end; justify-content:center; padding:0; }
+  .modal.open{ display:flex; }
   .sheet{ background:#fff; width:100%; max-width:520px; max-height:82vh; overflow-y:auto;
     border-radius:20px 20px 0 0; padding:20px 18px 30px; position:relative;
     box-shadow:0 -8px 30px rgba(43,38,34,.2); }
@@ -280,7 +281,7 @@
   <div class="foot">BLUE PHONE · single-file HTML</div>
 
   <!-- INFO MODAL -->
-  <div class="modal hide" id="modal">
+  <div class="modal" id="modal">
     <div class="sheet">
       <button class="x" id="closeBtn" aria-label="Close">×</button>
       <div class="mtitle">How to use</div>
@@ -323,9 +324,9 @@ function drawPearls(el, count){
 }
 
 /* info modal */
-$("infoBtn").onclick = ()=> $("modal").classList.remove("hide");
-$("closeBtn").onclick = ()=> $("modal").classList.add("hide");
-$("modal").addEventListener("click", e=>{ if(e.target === $("modal")) $("modal").classList.add("hide"); });
+$("infoBtn").onclick = ()=> $("modal").classList.add("open");
+$("closeBtn").onclick = ()=> $("modal").classList.remove("open");
+$("modal").addEventListener("click", e=>{ if(e.target === $("modal")) $("modal").classList.remove("open"); });
 
 /* tabs */
 $("tCalc").onclick = ()=>{ $("tCalc").classList.add("on"); $("tPlay").classList.remove("on");
